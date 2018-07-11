@@ -16,7 +16,7 @@ def cabocha(sent):
         temp = NamedTemporaryFile(delete=False, dir='/home_lab_local/s1010205/tmp/')
     else:
         temp = NamedTemporaryFile(delete=False)
-    try: sent = sent.encode('utf-8')
+    try: sent = sent.encode('eucjp')
     except: sent = formdamage(sent)
     temp.write(sent)
     temp.close()
@@ -24,7 +24,7 @@ def cabocha(sent):
     process = subprocess.Popen(command, stdin=open(temp.name,'r'), stdout=subprocess.PIPE)
     output = process.communicate()[0]
     os.unlink(temp.name)
-    return unicode(output, 'utf-8')
+    return unicode(output, 'eucjp')
 
 def main():
     pass

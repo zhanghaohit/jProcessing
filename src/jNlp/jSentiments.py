@@ -57,13 +57,12 @@ class Sentiment(object):
         print 'Pos Score = %.3f Neg Score = %.3f'%(pScore, nScore)
         if pScore == nScore:
             print 'Text is Neural or Cannot Determine'
-            return ''
         if pScore > nScore:
             print 'Text is', color('Positive', "green")
-            return ''
         else:
             print 'Text is', color('Negative',"red")
-            return ''
+
+        return pScore, nScore
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(add_help = True)
