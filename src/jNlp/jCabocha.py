@@ -16,7 +16,7 @@ def cabocha(sent):
         temp = NamedTemporaryFile(delete=False, dir='/home_lab_local/s1010205/tmp/')
     else:
         temp = NamedTemporaryFile(delete=False)
-    try: sent = sent.encode('eucjp')
+    try: sent = sent.encode('utf-8')
     except: sent = formdamage(sent)
     temp.write(sent)
     temp.close()
@@ -24,13 +24,13 @@ def cabocha(sent):
     process = subprocess.Popen(command, stdin=open(temp.name,'r'), stdout=subprocess.PIPE)
     output = process.communicate()[0]
     os.unlink(temp.name)
-    return unicode(output, 'eucjp')
+    return unicode(output, 'utf-8')
 
 def main():
     pass
 
 if __name__ == '__main__':
-    input_sentence = u'私が五年前にこの団体を仲間たちと結成したのはマルコス疑惑などで日本のＯＤＡ（政府開発援助）が問題になり、国まかせでなく、民間による国際協力が必要だと痛感したのが大きな理由です。'
+    input_sentence = u'ＰＲ情報等(本質をズバリ！本当に必要なことを的確に指摘する濱口善幸のタロット占い～１月28日（月）より「幸福の切札」をYahoo!公式サイトにて配信開始～)'
     print cabocha(input_sentence).encode('utf-8')
 
 
